@@ -1,41 +1,83 @@
-# Defined type to manage ownership for a specified path.
-#
-# We provide this for a couple of reasons:
-#  - IBM software wants to be installed as root.  It's possible to
-#    install as a different user, but the Installation Manager (the package
-#    manager) data won't know about that installation.  To keep things
-#    centralized so that we can reliably query it, we install as root.
-#  - Since we installed as root, the instance is "owned" by root.  This seems
-#    to cause some configuration tasks to fail to run, even if the "profiles"
-#    are owned by the service account.  E.g. some tasks attempt to create
-#    file locks within the instance directory that's owned by root.
-#  - Basically, we need to install as root and then make sure the thing gets
-#    owned by the service account afterwards.
-#  - Ultimately, this is what IBM documents - a series of 'chown' on various
-#    directories.
-#
-# We might be able to be more specific about ownership later on.
-#
-# References:
-#   - http://www-01.ibm.com/support/knowledgecenter/SSAW57_6.1.0/com.ibm.websphere.nd.multiplatform.doc/info/ae/ae/tpro_nonrootpro.html?cp=SSAW57_6.1.0%2F3-4-0-10-4-1
-#   - http://www-10.lotus.com/ldd/portalwiki.nsf/dx/Installing_and_Configuring_WebSphere_Portal_v8_as_a_non-root_user
-#   - http://publib.boulder.ibm.com/infocenter/wsdoc400/v6r0/index.jsp?topic=/com.ibm.websphere.iseries.doc/info/ae/ae/tsec_isprfchg.html
-#   - ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.infosphere_is/infosphere_is/8.5/configuration/ConfigWebSphere.pdf
-#
-define websphere_application_server::ownership (
-  $user,
-  $group,
-  $path = $title,
-) {
+# pwc_iis_features_install
 
-  validate_string($user)
-  validate_string($group)
-  validate_absolute_path($path)
+#### Table of Contents
 
-  exec { "Ownership_${title}":
-    command => "chown -R ${user}:${group} ${path}",
-    unless  => "find ${path} ! -type l \\( ! -user ${user} -type f \\) -o \\( ! -group ${group} \\) -a \\( -type f \\)| wc -l | awk '{print \$1}' | grep -qE '^0'",
-    path    => [ '/bin', '/usr/bin' ],
-    returns => [0, 2]
-  }
-}
+1. [Description](#description)
+1. [Setup - The basics of getting started with pwc_iis_features_install](#setup)
+    * [What pwc_iis_features_install affects](#what-pwc_iis_features_install-affects)
+    * [Setup requirements](#setup-requirements)
+    * [Beginning with pwc_iis_features_install](#beginning-with-pwc_iis_features_install)
+1. [Usage - Configuration options and additional functionality](#usage)
+1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+1. [Limitations - OS compatibility, etc.](#limitations)
+1. [Development - Guide for contributing to the module](#development)
+
+## Description
+
+Start with a one- or two-sentence summary of what the module does and/or what
+problem it solves. This is your 30-second elevator pitch for your module.
+Consider including OS/Puppet version it works with.
+
+You can give more descriptive information in a second paragraph. This paragraph
+should answer the questions: "What does this module *do*?" and "Why would I use
+it?" If your module has a range of functionality (installation, configuration,
+management, etc.), this is the time to mention it.
+
+## Setup
+
+### What pwc_iis_features_install affects **OPTIONAL**
+
+If it's obvious what your module touches, you can skip this section. For
+example, folks can probably figure out that your mysql_instance module affects
+their MySQL instances.
+
+If there's more that they should know about, though, this is the place to mention:
+
+* A list of files, packages, services, or operations that the module will alter,
+  impact, or execute.
+* Dependencies that your module automatically installs.
+* Warnings or other important notices.
+
+### Setup Requirements **OPTIONAL**
+
+If your module requires anything extra before setting up (pluginsync enabled,
+etc.), mention it here.
+
+If your most recent release breaks compatibility or requires particular steps
+for upgrading, you might want to include an additional "Upgrading" section
+here.
+
+### Beginning with pwc_iis_features_install
+
+The very basic steps needed for a user to get the module up and running. This
+can include setup steps, if necessary, or it can be an example of the most
+basic use of the module.
+
+## Usage
+
+This section is where you describe how to customize, configure, and do the
+fancy stuff with your module here. It's especially helpful if you include usage
+examples and code samples for doing things with your module.
+
+## Reference
+
+Here, include a complete list of your module's classes, types, providers,
+facts, along with the parameters for each. Users refer to this section (thus
+the name "Reference") to find specific details; most users don't read it per
+se.
+
+## Limitations
+
+This is where you list OS compatibility, version compatibility, etc. If there
+are Known Issues, you might want to include them under their own heading here.
+
+## Development
+
+Since your module is awesome, other users will want to play with it. Let them
+know what the ground rules for contributing are.
+
+## Release Notes/Contributors/Etc. **Optional**
+
+If you aren't using changelog, put your release notes here (though you should
+consider using changelog). You can also add any additional sections you feel
+are necessary or important to include here. Please use the `## ` header.
