@@ -8,7 +8,8 @@ define websphere_application_server::instance (
   $response_file             = undef,
   $install_options           = undef,
   $imcl_path                 = undef,
-  $profile_base              = undef,
+  #$profile_base              = undef,
+  $profile_base              = "C:/Program Files/IBM/WebSphere/AppServer/profiles"
   $manage_user               = false,
   $manage_group              = false,
   $user                      = $::websphere_application_server::user,
