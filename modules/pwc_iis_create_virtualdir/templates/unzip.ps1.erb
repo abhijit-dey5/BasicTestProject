@@ -1,0 +1,27 @@
+$source_directory = @("<%= @source_dir %>")
+$destination_directory = @("<%= @dir_path %>")
+
+Get-ChildItem -Path $destination_directory -Include * -Directory -Recurse -Force | foreach { Remove-Item $_ -Recurse -Force }
+
+Get-Item $destination_directory| ForEach-Object `
+{
+    Copy-Item -Path $source_directory/* -Destination $_.FullName -Recurse -Force
+}
+
+function Expand-ZIPFile($file, $destination)
+{
+    $shell = new-object -com shell.application
+    $zip = $shell.NameSpace($file)
+    foreach($item in $zip.items())
+    {
+        $shell.Namespace([IO.Path]::GetFullPath($destination)).copyhere($item, 0x14)
+    }
+}
+
+Get-ChildItem $destination_directory -Filter *.zip | ForEach-Object `
+{
+    Expand-ZIPFile -File $_.FullName -Destination $destination_directory
+}
+
+exit 0
+

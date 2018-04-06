@@ -1,0 +1,7 @@
+Import-Module WebAdministration
+$website_title = "<%=@site_title%>"
+[int] $ftpsite_port_number = <%=@ftp_port_number%>
+$website_ip_address = "<%=@site_ip_address %>"
+$website_hostname = "<%=@site_hostname%>"
+$website_path = "<%=@site_path%>"
+New-WebFtpSite -Name $website_title -Port $ftpsite_port_number -IPAddress $website_ip_address -HostHeader $website_hostname -PhysicalPath $website_path -Force

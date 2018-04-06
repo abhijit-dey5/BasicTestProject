@@ -1,0 +1,11 @@
+#$source_file= "<%=@source_dir%>"
+$destination_directory="<%=@location%>"
+$backup_directory = "<%= @backup_dir%>"
+#if (Test-Path $destination_dir) {Remove-Item $destination_dir/* -Recurse -Force}
+#Copy-Item -Path $destination_dir/* -Destination $backup_directory -Recurse -Force
+#Copy-Item -Path $source_file/* -Destination $destination_directory -Recurse -Force
+
+Get-ChildItem -Path $destination_directory | ForEach-Object `
+{
+    Copy-Item -Path $_.FullName -Destination $backup_directory -Recurse -Force
+}

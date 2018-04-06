@@ -1,0 +1,15 @@
+{
+  "name": "adey047-pwc_iis_create_virtualDir",
+  "version": "0.1.0",
+  "author": "Abhijit",
+  "summary": "This module helps to create a new virtual directory under an existing IIS application",
+  "license": "Apache-2.0",
+  "source": "/etc/puppetlabs/code/environments/production/modules/",
+  "project_page": "https://forge.puppet.com/puppetlabs/iis",
+  "issues_url": null,
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+

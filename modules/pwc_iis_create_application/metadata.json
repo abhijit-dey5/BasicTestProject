@@ -1,0 +1,15 @@
+{
+  "name": "adey047-pwc_iis_create_application",
+  "version": "0.1.0",
+  "author": "Abhijit",
+  "summary": "This module helps to create an application under an existing website and to control the application's running status",
+  "license": "Apache-2.0",
+  "source": "/etc/puppetlabs/code/environments/production/modules/",
+  "project_page": "/etc/puppetlabs/code/environments/production/modules/",
+  "issues_url": null,
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+

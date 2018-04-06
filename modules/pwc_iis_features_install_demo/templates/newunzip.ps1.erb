@@ -1,0 +1,3 @@
+$source_file= "<%=@store_dir%>"
+$destination_directory="<%=@backup_dir%>"
+Copy-Item -Filter *.zip -Path $source_file -Destination $destination_directory -Force

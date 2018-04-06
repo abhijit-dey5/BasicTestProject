@@ -1,0 +1,2 @@
+$value = "<%= @proxy_enable_value %>"
+Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter "system.webServer/proxy" -name "enabled" -value $value

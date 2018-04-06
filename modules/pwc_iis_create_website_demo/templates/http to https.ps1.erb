@@ -1,0 +1,10 @@
+$website_name="<%=@site_title%>"
+$script_path = 'iis:\sites\'+$website_name
+
+
+Add-WebConfigurationProperty -pspath $script_path -filter "system.webserver/rewrite/rules" -name "." -value @{name='HTTP to HTTPS Redirect'; patternSyntax='ECMAScript'; stopProcessing='True'}
+Set-WebConfigurationProperty -pspath $script_path -filter "system.webserver/rewrite/rules/rule[@name='HTTP to HTTPS Redirect']/match"  -name url -value "(.*)"
+Add-WebConfigurationProperty -pspath $script_path -filter "system.webserver/rewrite/rules/rule[@name='HTTP to HTTPS Redirect']/conditions" -name "." -value @{input="{HTTPS}"; pattern='^OFF$'}
+Set-WebConfigurationProperty -pspath $script_path -filter "system.webServer/rewrite/rules/rule[@name='HTTP to HTTPS Redirect']/action" -name "type" -value "Redirect"
+Set-WebConfigurationProperty -pspath $script_path -filter "system.webServer/rewrite/rules/rule[@name='HTTP to HTTPS Redirect']/action" -name "url" -value "https://{HTTP_HOST}/{R:1}"
+Set-WebConfigurationProperty -pspath $script_path -filter "system.webServer/rewrite/rules/rule[@name='HTTP to HTTPS Redirect']/action" -name "redirectType" -value "SeeOther" 

@@ -1,0 +1,17 @@
+Import-Module WebAdministration
+$store_drive = "<%= @storage_drive %>"
+$new_store = $store_drive+":\"
+#Move-Item -Path C:\inetpub -Destination $store_drive+":\" -Force
+Copy-Item -Path C:\inetpub -Destination $new_store -Recurse -Force
+#cd IIS:\Sites
+Get-ChildItem IIS:\Sites | ForEach-Object `
+{
+    if ($_.Name -eq "Default Web Site"){
+        #Get-ItemProperty -Path 'IIS:\Sites\Default Web Site'
+        Set-ItemProperty 'IIS:\Sites\Default Web Site' -Name physicalPath -value D:\inetpub\wwwroot
+        Set-ItemProperty  'IIS:\Sites\Default Web Site' -Name bindings -Value @{protocol="http";bindingInformation="*:89:"}
+        Stop-Website 'Default Web Site'
+        Get-ItemProperty -Path 'IIS:\Sites\Default Web Site'
+    }
+
+}

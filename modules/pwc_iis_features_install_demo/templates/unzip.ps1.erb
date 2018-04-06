@@ -1,0 +1,21 @@
+$source_directory = @("<%= @source_dir %>")
+$destination_directory = @("<%= @store_dir %>")
+
+
+function Expand-ZIPFile($file, $destination)
+{
+    $shell = new-object -com shell.application
+    $zip = $shell.NameSpace($file)
+    foreach($item in $zip.items())
+    {
+        $shell.Namespace([IO.Path]::GetFullPath($destination)).copyhere($item, 0x14)
+    }
+}
+
+Get-ChildItem $source_directory -Filter *.zip | ForEach-Object `
+{
+    Expand-ZIPFile -File $_.FullName -Destination $destination_directory
+}
+
+exit 0
+
