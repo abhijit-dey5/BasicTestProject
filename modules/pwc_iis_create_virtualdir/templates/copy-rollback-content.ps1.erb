@@ -1,5 +1,0 @@
-$source_file= "<%=@backup_dir%>"
-$destination_directory="<%=@dir_path%>"
-#if (Test-Path $destination_dir) {Remove-Item $destination_dir/* -Recurse -Force}
-Get-ChildItem -Path $destination_directory -Include * -Directory -Recurse -Force | foreach { Remove-Item $_ -Recurse -Force }
-Copy-Item -Path $source_file/* -Destination $destination_directory -Recurse -Force

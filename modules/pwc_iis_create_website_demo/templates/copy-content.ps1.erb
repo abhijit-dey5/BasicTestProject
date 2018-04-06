@@ -1,4 +1,0 @@
-$source_file= "<%=@site_path%>"
-$destination_directory="<%=@backup_dir%>"
-Get-ChildItem -Path $destination_directory -Include * -Recurse -Force | foreach { Remove-Item $_.FullName -Recurse -Force }
-Copy-Item -Path $source_file/* -Destination $destination_directory -Recurse -Force
