@@ -1,0 +1,10 @@
+{
+  "CHANGELOG.md": "5caf66f87caf8f1b9fb0ca00dbbee110",
+  "CONTRIBUTING.md": "deee0b4bacae338ad358192e3ac6b7fe",
+  "LICENSE": "f124bfaefacd4e1a4080065d403bc1d4",
+  "README.md": "5600e0a471786ed54e1929737f349345",
+  "manifests/agent/debian.pp": "8c7cde9041965a2d362da4e33c5662cc",
+  "manifests/agent/redhat.pp": "fe08aee674d3db0127486f032737ae11",
+  "manifests/agent.pp": "e26097789071ba986a61d800715cecf3",
+  "metadata.json": "87dbe2a25f046a61ac30567b654990e8"
+}
