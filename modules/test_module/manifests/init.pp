@@ -1,7 +1,7 @@
 class test_module{
   file{'newfile':
     ensure=>directory,
-    path  => 'C:/'
+    path  => 'C:/',
     force =>true,
   }
 }
