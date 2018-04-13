@@ -1,0 +1,6 @@
+---
+test_module::file_list:
+  directories:
+    - C:\NewHieraFolder01
+    - C:\NewHieraFolder02
+

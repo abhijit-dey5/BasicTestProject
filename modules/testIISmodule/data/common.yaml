@@ -1,0 +1,38 @@
+---
+
+testIISmodule::features:
+  webftp:
+    - web-app-dev
+    - web-appinit
+    - web-asp
+    - web-asp-net
+    - web-asp-net45
+    - web-common-http
+    - web-default-doc
+    - web-dyn-compression
+    - web-filtering
+    - web-health
+    - web-http-errors
+    - web-http-logging
+    - web-http-redirect
+    - web-http-tracing
+    - web-isapi-ext
+    - web-isapi-filter
+    - web-log-libraries
+    - web-mgmt-console
+    - web-mgmt-service
+    - web-mgmt-tools
+    - web-net-ext
+    - web-net-ext45
+    - web-performance
+    - web-request-monitor
+    - web-security
+    - web-scripting-tools
+    - web-server
+    - web-stat-compression
+    - web-static-content
+    - Web-WebServer
+    - web-websockets
+    - web-windows-auth
+    - web-ftp-server
+    - web-ftp-service
