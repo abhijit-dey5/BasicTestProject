@@ -42,7 +42,7 @@
 #
 # Copyright 2018 Your name here, unless otherwise noted.
 #
-class testIISmodule(
+class testiismodule(
 	$features,
 	$installable_features,
 	$ensure_value,

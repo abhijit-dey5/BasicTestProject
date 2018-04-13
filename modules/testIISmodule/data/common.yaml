@@ -1,6 +1,6 @@
 ---
 
-testIISmodule::features:
+testiismodule::features:
   webftp:
     - web-app-dev
     - web-appinit
